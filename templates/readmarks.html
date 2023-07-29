@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Welcome To LMS</title>
+{% endblock %}
+{%  block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <span><p>{{ message }}</p></span>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="result-container">
+        <a id='back' href="/">Back</a>
+        <h2 id="topic">Exam/Assignment Results</h2>
+        <div id="result_viewer">
+
+            {% if no != 0 %}
+                {% for result in exam_results %}
+                    <ul class="small-boxer">
+                        <li>By Teacher: {{ result.teacher_username }}<a href='/examarks/delete/{{ result.id }}'>Clear</a></li>
+                        <ul>
+                            <li> {{ result.grade_comments }} </li>
+                        </ul>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <h6>No Content Found...</h6>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
+

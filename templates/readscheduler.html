@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Welcome To LMS</title>
+{% endblock %}
+
+{%  block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <span><p>{{ message }}</p></span>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="schedule-container">
+        <a id='back' href="/">Back</a>
+        <h2 id="topic">Exam Dates</h2>
+        <div id="schedule_viewer">
+
+            {% if no != 0 %}
+                {% for schedule in exam_schedules %}
+                    <ul class="issue-boxer">
+                        <li>By Teacher: {{ schedule.teacher_username }}</li>
+                        <ul>
+                            <li>Exam Details: {{ schedule.exam_description }}</li>
+                            <li>Exam On: {{ schedule.date_scheduled }} </li>
+                        </ul>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <h6>No Content Found...</h6>
+            {% endif %}
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%  block body %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <span><p>{{ message }}</p></span>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="control">
+        <a id='back' href="/">Back</a>
+        <div id="lecture_list">
+            <h3>My-Lectures</h3>
+            <ul class="small-boxer">
+                {% if no != 0 %}
+                    {% for lecture in lectures %}
+                        <li>{{ lecture.filename }}<a id="delete-lecture" href="/lecture/{{ lecture.id }}">Delete</a></li>
+                    {% endfor %}
+                {% else %}
+                    <h6>No Content Found...</h6>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div id="lecture_upload">
+            <h4>Select a File to Upload</h4>
+            <form method="post" action="/lecture" enctype="multipart/form-data">
+                <input id="lecinput" type="text" name="title" placeholder="Title of Lecture?" required maxlength="50">
+                <input id="lecinput" type="file" name="file" required>
+                <input id="uploadbtn" type="submit" value="Upload">
+            </form>
+        </div>
+    </div>
+{% endblock %}

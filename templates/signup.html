@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Registration</title>
+{% endblock %}
+{%  block body %}
+
+<center>
+    <div class="register-form">
+        <a href="/" id="back">Back</a>
+        <h2>Sign Up</h2>
+        <form action="/register" method="POST">
+            <div class="radio-container">
+                <label>Account Type: </label>
+                <label>
+                        <input type="radio" name="person" id="teacher" value="teacher">
+                        Teacher
+                </label>
+                <label>
+                        <input type="radio" name="person" id="student" value="student" checked>
+                        Student
+                </label>
+            </div>
+
+            <input id="reg1" type="text" title="fname" placeholder="First Name" name="fname" required maxlength="20"/>
+            <input id="reg1" type="text" title="lname" placeholder="Last Name" name="lname"required maxlength="20"/>
+            
+            <div class="radio-container">
+                <label>Gender: </label>
+                <label>
+                        <input type="radio" name="gender" id="male" value="male" checked>
+                        Male
+                </label>
+                <label>
+                        <input type="radio" name="gender" id="female" value="female">
+                        Female
+                </label>
+            </div>
+
+            <input id="reg1" type="text" title="username" placeholder="Username" name="username" required minlength="5" maxlength="20"/>
+            <input id="reg1" type="email" title="email" placeholder="Email" name="email" required/>
+            <input id="reg1" type="password" id="password" title="pass" placeholder="Create a Password"  name="password" required minlength="6"/>
+            <input id="reg1" type="password" id="confirm_password" title="passc" placeholder="Confirm Password" required minlength="6"/>
+            <button type="submit" class="regbtn">Register</button>
+        </form>
+    </div><!--end log form -->
+    </center>
+
+    <script>
+            var password = document.getElementById("password")
+            , confirm_password = document.getElementById("confirm_password");
+
+            function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+            }
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+    </script>
+
+{% endblock %}
+

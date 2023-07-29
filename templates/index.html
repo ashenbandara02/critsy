@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Welcome To LMS</title>
+{% endblock %}
+{%  block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <span><p>{{ message }}</p></span>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+
+<div class="welcome-msg">
+    <h1>Critsy</h1>
+    
+</div>
+
+<center>
+<div class="login-form">
+    <h2>Login</h2>
+    <form action="/" method="POST" id="login-form2">
+      <input type="text" title="username" name="username" placeholder="Username" required maxlength="20"/>
+      <input type="password" title="password" name="password" placeholder="Password" required/>
+      <button type="submit" class="btn">Login</button>
+      <div>
+        <a class="forgot" href="/register">Registration</a>
+      </div>
+    </form>
+    
+</div><!--end log form -->
+</center>
+{% endblock %}

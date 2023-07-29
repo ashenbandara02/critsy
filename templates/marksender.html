@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <!-- for displaying flashed messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <span><p>{{ message }}</p></span>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="marksender_container">
+        <a id="back" href="/">Back</a>
+        <div id="topic">
+            <h3>Publish Marks</h3>
+        </div>
+
+        <div id="marks_send">
+            <h4>Send Exam/Assignment Marks to Students</h4>
+            <form id="marks_send_form" method="post" action="/marks">
+                <input id="mark_stname" type="text" name="student_username" placeholder="Student Username" maxlength="20" required>
+                <input id="mark_comments" type="text" name="grade_comments" placeholder="Grade/Comments" maxlength="100">
+                <input id="uploadbtn" type="submit" value="Send To Student">
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{%  block body %}
+    <div class="profilehandler">
+        
+        <div class="userstatus">
+            <img src="{{ profilepic }}" id="profilepic"/>
+            <a href="/logout">Logout</a>
+            <ul id="userdata">
+                <li id="bullet-remove"><h3 id="person_name">{{ data.first_name + " " + data.last_name + " - " + data.person }}</h3></li>
+                <li>Username: {{ data.username }}</li>
+                <li>{{ data.email }}</li>
+                <li>{{ data.gender }}</li>
+                <li>Member Since: {{ data.date_created.strftime("%m/%d/%Y, %H:%M:%S") }}</li>
+            </ul>
+        </div>
+    </div>
+
+    {% if data.person == 'Teacher' %}
+        <div class="container">
+            <a href="/lecture">Add/Remove Lectures</a>
+		    <a href="/exams">Schedule/Delete Exam</a>
+		    <a href="/marks">Publish Exam/Assignment Marks</a>
+        </div>
+    {% else %}
+        <div class="container">
+            <a href="/studymaterial">Study Material</a>
+            <a href="/examdates">Exam Dates</a>
+            <a href="/examarks">My Exam/Assignment's Marks</a>
+        </div>
+    {% endif %}    
+{% endblock %}

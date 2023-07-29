@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <!-- for displaying flashed messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <span><p>{{ message }}</p></span>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="schedulecontrol">
+        <a id="back" href="/">Back</a>
+        <div id="schedule_list">
+            <h3>Exam-Scheduler</h3>
+            
+            <ol>
+                {% if no != 0 %}
+                    {% for schedule in schedules %}
+                        <li>{{ schedule.exam_description }} <h5>Date/Time: {{ schedule.date_scheduled }}</h5><a href="/exams/{{ schedule.id }}">Delete</a></li>
+                    {% endfor %}
+                {% else %}
+                    <h6>No Content Found...</h6>
+                {% endif %}
+            </ol>
+        </div>
+
+        <div id="schedule_upload">
+            <h4>Schedule an Exam</h4>
+            <form id="schedule_upload_form" method="post" action="/exams">
+                <input id="schinput" type="text" name="description" placeholder="Title and Other info" required maxlength="30">
+                <input id="schinput" type="datetime-local" name="datetime" required>
+                <input id="uploadbtn" type="submit" value="Schedule">
+            </form>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

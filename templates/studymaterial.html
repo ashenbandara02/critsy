@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Welcome To LMS</title>
+{% endblock %}
+{%  block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <span><p>{{ message }}</p></span>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="study_container">
+        <!-- For Displaying Teachers List -->
+        {% if process1 %}
+            <a id='back' href="/">Back</a>
+            <h2 id="topic">Lecturer's</h2>
+            {% if no != 0 %}
+                {% for teacher in teacher_list %}
+                    <ul class="small-boxer">
+                        <li><a href="/studymaterial/{{ teacher.username  }}">Teacher: {{ teacher.first_name }} {{ teacher.last_name }}-({{ teacher.username }})</a></li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <h6>No Teacher's Found !</h6>
+            {% endif %}
+        {% endif %}
+        <!-- For Displaying Perticular Teacher Video's/pic list -->
+        {% if process2 %}
+            <a id='back' href="/studymaterial">Back</a>
+            <h2 id="topic">{{ teacher[0]}} {{teacher[1]}}'s Content</h2>
+
+            {% if no != 0 %}
+                    {% for content in content_list %}
+                        <ul class="lecturer-boxer">
+                            <li><a href="/studymaterial/{{ content.user_name }}/{{ content.id }}">{{ content.filename }}</a></li>
+                        </ul>
+                    {% endfor %}
+
+            {% else %}
+                <h6>No Content Found !</h6>
+
+            {% endif %}
+        {% endif %}
+
+        <!-- For Displaying Video-->
+        {% if process3 %}
+            <a id='back' href="/studymaterial/{{ teacher }}">Back</a>
+            <h2 id="topic">Video: {{ file_title }}</h2>
+        <center id="centercontent">
+            <video controls>
+                <source src="{{ video }}" type="video/{{ current_type }}">
+            </video>
+        </center>
+        {% endif %}
+        <!-- For Displaying Video/pic -->
+        {% if process4 %}
+            <a id='back' href="/studymaterial/{{ teacher }}">Back</a>
+            <h2 id="topic">Image: {{ file_title }}</h2>
+            <center id="centercontent">
+                <img id="display_pic" src="{{ photo }}"/>
+            </center>
+        {% endif %}
+        
+    </div>
+
+{% endblock %}+

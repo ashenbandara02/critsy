@@ -1,0 +1,15 @@
+always run in virtual enviroment to avoid bugs/errors
+pip install venv
+windows --> env\scripts\activate
+linux -----> . venv/bin/activate
+
+
+
+
+to run without venv we must install pacages below
+pip install flask-sqlalchemy
+pip install flask flask_sqlalchemy flask_login flask_bcrypt flask_wtf wtforms email_validator
+pip install flask flask-email
+
+allowed file extentions application are default as png', 'jpeg', 'jpg', 'mp4', 'mov','wmv','avi','mkv'
+can be changed at line (13,317,318)
